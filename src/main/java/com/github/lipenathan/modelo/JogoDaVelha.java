@@ -1,7 +1,5 @@
 package com.github.lipenathan.modelo;
 
-import java.util.List;
-
 public class JogoDaVelha extends Jogo {
 
     public JogoDaVelha() {

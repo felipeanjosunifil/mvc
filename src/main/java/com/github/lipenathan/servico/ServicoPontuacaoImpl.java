@@ -3,7 +3,7 @@ package com.github.lipenathan.servico;
 import com.github.lipenathan.modelo.Jogador;
 import com.github.lipenathan.modelo.Jogo;
 
-public class ServicoPontuacaoImpl implements ServicoPontuacao, ServicoPontuacaoSimples {
+public class ServicoPontuacaoImpl implements ServicoPontuacaoSimples {
 
     public String pontuacaoDoJogador(Jogador jogador) {
         return "Jogador: " + jogador.getNome() + "\nPontuação:" +  jogador.getPontuacao();
