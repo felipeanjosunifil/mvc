@@ -23,4 +23,12 @@ public class Jogador {
     public void setPontuacao(int pontuacao) {
         this.pontuacao = pontuacao;
     }
+
+    @Override
+    public String toString() {
+        return "Jogador{" +
+                "nome='" + nome + '\'' +
+                ", pontuacao=" + pontuacao +
+                '}';
+    }
 }

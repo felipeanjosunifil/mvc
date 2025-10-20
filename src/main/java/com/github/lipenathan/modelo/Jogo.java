@@ -1,10 +1,13 @@
 package com.github.lipenathan.modelo;
 
+import java.util.List;
+
 public class Jogo {
     private String nome;
     private int numeroJogadores;
     private int idade;
     private String tipo;
+    private List<Jogador> jogadores;
 
     public Jogo(String nome, int numeroJogadores, int idade, String tipo) {
         this.nome = nome;
@@ -43,5 +46,17 @@ public class Jogo {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public List<Jogador> getJogadores() {
+        return jogadores;
+    }
+
+    public void setJogadores(List<Jogador> jogadores) {
+        this.jogadores = jogadores;
+    }
+
+    public void adionarJogador(Jogador jogador){
+        this.jogadores.add(jogador);
     }
 }
