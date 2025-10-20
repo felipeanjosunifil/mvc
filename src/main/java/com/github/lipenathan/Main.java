@@ -1,23 +1,57 @@
 package com.github.lipenathan;
 
+import com.github.lipenathan.modelo.Jogador;
+import com.github.lipenathan.modelo.Jogo;
+import com.github.lipenathan.modelo.JogoDaVelha;
+import com.github.lipenathan.servico.ServicoJogo;
+import com.github.lipenathan.servico.ServicoPontuacaoImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        Compra compra1 = new Compra(1000, "Fulano", 11);
 
-        Compra compra2 = new Compra(1500, "Ciclano", 15);
+        //L - Princípio de Liskov. Uma classe precisa poder ser substituída por sua classe filha(herança)
+//        Jogo jogo = new Jogo("Banco imobiliário", 8, 12, "Tabuleiro");
+        Jogo jogo = new JogoDaVelha();
 
-//        ServicoFrete servicoFrete = new ServicoFrete(); //caso o contrutor necessite de parâmetro
+        ServicoJogo servicoJogo = new ServicoJogo(new ServicoPontuacaoImpl());
 
-        InterfaceFrete servicoFrete = new ServicoFrete();
+        String descricao = servicoJogo.descricaoJogo(jogo);
 
-        ServicoCompra servicoCompra = new ServicoCompra(servicoFrete);
+        System.out.println(descricao);
 
+        List<Jogador> jogadores = new ArrayList<>();
 
-        double valorCompra1 = servicoCompra.calcularPrecoCompraParcelada(compra1);
+        Jogador jogador1 = new Jogador("Alberto");
+        Jogador jogador2 = new Jogador("Ana");
+        Jogador jogador3 = new Jogador("Pedro");
 
-        System.out.println("A compra do " + compra1.getNomeCliente() + " ficou com um total de: R$" + valorCompra1);
+        jogadores.add(jogador1);
+        jogadores.add(jogador2);
+        jogadores.add(jogador3);
 
-        double valorCompra2 = servicoCompra.calcularPrecoCompraParcelada(compra2);
-        System.out.println("A compra do " + compra2.getNomeCliente() + " ficou com um total de: R$" + valorCompra2);
+        jogo.setJogadores(jogadores);
+
+        boolean aceitaJogadores = servicoJogo.verificarDisponibilidadeJogadores(jogo);
+
+        System.out.println(aceitaJogadores);
+
+        servicoJogo.adicionarPonto(jogo, 0);
+        servicoJogo.adicionarPonto(jogo, 0);
+        servicoJogo.adicionarPonto(jogo, 0);
+
+        servicoJogo.adicionarPonto(jogo, 1);
+        servicoJogo.adicionarPonto(jogo, 1);
+
+//        servicoJogo.adicionarPonto(jogo, 2);
+//        servicoJogo.adicionarPonto(jogo, 2);
+//        servicoJogo.adicionarPonto(jogo, 2);
+//        servicoJogo.adicionarPonto(jogo, 2);
+
+        String ranking = servicoJogo.ranking(jogo);
+
+        System.out.println(ranking);
     }
 }
